@@ -7,3 +7,6 @@ https://javascript30.com/
   ```zsh
   for (( i=1; i<31; i++)); do mkdir day$i; done
   ```
+  via http://unix.stackexchange.com/questions/23227/for-loops-in-zsh-and-bash
+
+
