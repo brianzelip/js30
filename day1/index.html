@@ -13,13 +13,25 @@
     <style>
       body,
       .vh100 { min-height: 100vh; }
+      .dark { color: var(--dark); }
       .bg-dark { background-color: var(--dark); }
       .light-red { color: var(--light-red); }
       .border-red { border: 1px solid var(--light-red); }
+      .border-dark { border: 1px solid var(--dark); }
 
       .align-items-center { align-items: center; }
       .justify-content-center { justify-content: center; }
       .align-content-center { align-content: center; }
+
+      kbd {
+        transition:all .07s;
+      }
+      .playing {
+        transform:scale(1.2);
+        border-color:#ffc600;
+        box-shadow: 0 0 10px #ffc600;
+        color: #ffc600;
+      }
 
       :root {
         --dark: rgb(0,83,94);
@@ -31,15 +43,71 @@
   <body class="bg-dark">
 
     <main class="vh100 container flex align-items-center justify-content-center">
-      <div class="p2 ml2 mr2 border-red rounded light-red">A</div>
-      <div class="p2 ml2 mr2 border-red rounded light-red">S</div>
-      <div class="p2 ml2 mr2 border-red rounded light-red">D</div>
-      <div class="p2 ml2 mr2 border-red rounded light-red">F</div>
-      <div class="p2 ml2 mr2 border-red rounded light-red">J</div>
-      <div class="p2 ml2 mr2 border-red rounded light-red">K</div>
-      <div class="p2 ml2 mr2 border-red rounded light-red">L</div>
-      <div class="p2 ml2 mr2 border-red rounded light-red">;</div>
+      <div>
+        <kbd data-key="65" class="block font-size-inherit font-family-inherit p2 ml2 mr2 border-red rounded light-red">A</kbd>
+        <span class="block mt2 h6 center caps light-red">bass</span>
+      </div>
+      <div>
+        <kbd data-key="83" class="block font-size-inherit font-family-inherit p2 ml2 mr2 border-red rounded light-red">S</kbd>
+        <span class="block mt2 h6 center caps light-red">clap</span>
+      </div>
+      <div>
+        <kbd data-key="68" class="block font-size-inherit font-family-inherit p2 ml2 mr2 border-red rounded light-red">D</kbd>
+        <span class="block mt2 h6 center caps light-red">cymbal</span>
+      </div>
+      <div>
+        <kbd data-key="70" class="block font-size-inherit font-family-inherit p2 ml2 mr2 border-red rounded light-red">F</kbd>
+        <span class="block mt2 h6 center caps light-red">hi hat</span>
+      </div>
+      <div>
+        <kbd class="block font-size-inherit font-family-inherit p2 ml2 mr2 dark">G</kbd>
+      </div>
+      <div>
+        <kbd class="block font-size-inherit font-family-inherit p2 ml2 mr2 dark">H</kbd>
+      </div>
+      <div>
+        <kbd data-key="74" class="block font-size-inherit font-family-inherit p2 ml2 mr2 border-red rounded light-red">J</kbd>
+        <span class="block mt2 h6 center caps light-red">kick</span>
+      </div>
+      <div>
+        <kbd data-key="75" class="block font-size-inherit font-family-inherit p2 ml2 mr2 border-red rounded light-red">K</kbd>
+        <span class="block mt2 h6 center caps light-red">snare</span>
+      </div>
+      <div>
+        <kbd data-key="76" class="block font-size-inherit font-family-inherit p2 ml2 mr2 border-red rounded light-red">L</kbd>
+        <span class="block mt2 h6 center caps light-red">tom</span>
+      </div>
     </main>
+
+    <audio data-key="65" src="sounds/bass.wav"></audio>
+    <audio data-key="83" src="sounds/clap.wav"></audio>
+    <audio data-key="68" src="sounds/cymbal.wav"></audio>
+    <audio data-key="70" src="sounds/hi-hat.wav"></audio>
+    <audio data-key="74" src="sounds/kick.wav"></audio>
+    <audio data-key="75" src="sounds/snare.wav"></audio>
+    <audio data-key="76" src="sounds/tom.wav"></audio>
+
+    <script>
+      window.addEventListener('keydown', function(e){
+        // console.log(e.keyCode);
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`kbd[data-key="${e.keyCode}"]`);
+        // console.log(audio);
+        // console.log(key);
+        if (!audio || !key) return;
+        audio.currentTime = 0;// rewind audio track to start
+        audio.play();
+        key.classList.add('playing');
+      });
+
+      function rmTransition(e){
+        if (e.propertyName !== 'transform') return;
+        this.classList.remove('playing');
+      };
+
+      const keys = document.querySelectorAll('kbd');
+      keys.forEach(key => key.addEventListener('transitionend', rmTransition));
+    </script>
 
   </body>
 
