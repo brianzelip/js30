@@ -1,0 +1,37 @@
+
+References
+- 808 sounds (ddg'd for "808 sounds"): http://hiphopmakers.com/free-808-drum-kit-227-samples
+  - see also https://github.com/search?langOverride=&q=808+wav&repo=&start_value=1&type=Wikis
+- tutorial CSS, https://github.com/wesbos/JavaScript30/blob/master/01%20-%20JavaScript%20Drum%20Kit/style.css
+- tutorial HTML, https://github.com/wesbos/JavaScript30/blob/master/01%20-%20JavaScript%20Drum%20Kit/index-START.html
+- `scale()`, https://developer.mozilla.org/en-US/search?q=scale&topic=api&topic=css&topic=html&topic=js&topic=apps&topic=webdev
+- inherit `font-family` and `font-size`, http://basscss.com/v7/docs/utility-typography/
+- deprecated `KeyboardEvent` properties:
+  - https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/charCode
+  - https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
+- not-yet-standard (non-safari) `KeyboardEvent` properties:
+  - https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
+  - https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
+- `KeyboardEvent.keyCode` look ups:
+  - http://keycode.info/
+  - https://github.com/wesbos/keycodes/blob/gh-pages/index.html
+  - https://github.com/wesbos/keycodes/blob/gh-pages/scripts.js
+  - https://github.com/brianzelip/keycode/blob/master/index.html
+- unicode %$&# (ie: in trying to work around the above tension between deprecated and not-yet-standard properties for getting the pressed key):
+  - https://duckduckgo.com/?q=what+are+the+different+ways+unicode+can+be+expressed&t=ffab&ia=web
+  - http://stackoverflow.com/questions/7251956/detecting-command-keystroke-in-safari
+  - http://www.decodeunicode.org/u+0044
+  - https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/
+  - http://stackoverflow.com/questions/7063255/how-can-i-convert-a-string-into-a-unicode-character
+  - http://stackoverflow.com/questions/2241348/what-is-unicode-utf-8-utf-16
+  - https://duckduckgo.com/?q=javascript+convert+keyIdentifier+to+string&t=osx&ia=qa
+  - https://en.wikipedia.org/wiki/Code_point
+- working out the scripts:
+  - add classes w/ JS: https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+  - accessing via JS when a CSS transitions ends:
+    - https://developer.mozilla.org/en-US/docs/Web/Events/transitionend
+    - https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontransitionend
+  - audio:
+    - play(): https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play
+    - currentTime: https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime
+- `<kbd>`: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd
