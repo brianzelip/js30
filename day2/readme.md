@@ -15,9 +15,9 @@ https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 
 
 Theory for clock hands animation:
-  seconds = calc(60/360)
-  minutes = calc(60/360)
-  hours   = calc(12/360)
+  seconds = calc(360/60)
+  minutes = calc(360/60)
+  hours   = calc(360/12)
 
   1. get timestamp when page is loaded
   2. rotate each hand to express the `hh:mm:ss` of the timestamp

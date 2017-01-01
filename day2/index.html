@@ -86,7 +86,7 @@
         width: 5px;
         height: 175px;
         background-color: red;
-        transform: rotate(45deg);
+        transform: rotate(180deg);
         /*transform-origin: 0 100%;*/
         /*transform-origin: bottom;*/
         transform-origin: 0 bottom;
@@ -129,11 +129,18 @@
     </main>
 
   <script>
-    const timestamp = new Date();
-    console.log('current time: ' + timestamp + '\n' + '\
-    current hour: ' + timestamp.getHours() + '\n' + '\
-    current min: ' + timestamp.getMinutes() + '\n' + '\
-    current sec: ' + timestamp.getSeconds());
+    const ts = new Date();
+    const secs = document.querySelector('.hand-sec');
+    const mins = document.querySelector('.hand-min');
+    const hour = document.querySelector('.hand-hour');
+
+    console.log('current time: ' + ts + '\n' + '\
+    current hour: ' + ts.getHours() + '\n' + '\
+    current min: ' + ts.getMinutes() + '\n' + '\
+    current sec: ' + ts.getSeconds());
+
+    console.log(secs);
+    // secs.setAttribute('style', 'transform:rotate(180deg);');
 
     // console.log(new Date().getSeconds());
   </script>
