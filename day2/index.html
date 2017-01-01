@@ -13,7 +13,7 @@
     <style>
       body,
       .vh100 { min-height: 100vh; }
-      
+
       .square {
         height: 400px;
         width: 400px;
@@ -38,18 +38,53 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        align-items: flex-start;
+        /*align-items: flex-start;*/
         /*border: 5px solid red;*/
       }
 
+      /*.hands::after {
+        content: "";
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 50%;
+      }*/
+
       .hand {
-        width: 10px;
-        height: 150px;
         position: absolute;
         bottom: 50%;
       }
 
+      /*.hand-cover {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        margin-top: 3rem;
+        bottom: 50%;
+      }*/
+
+      .hands-cap-wrapper {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .hands-cap {
+        width: 40px;
+        height: 40px;
+        background-color: black;
+        border-radius: 50%;
+        z-index: 3;
+      }
+
       .hand-sec {
+        width: 5px;
+        height: 175px;
         background-color: red;
         transform: rotate(45deg);
         /*transform-origin: 0 100%;*/
@@ -58,6 +93,8 @@
       }
 
       .hand-min {
+        width: 7px;
+        height: 175px;
         background-color: black;
         transform: rotate(22.5deg);
         /*transform-origin: 0 100%;*/
@@ -66,6 +103,8 @@
       }
 
       .hand-hour {
+        width: 7px;
+        height: 125px;
         background-color: green;
         /*transform-origin: 0 100%;*/
         /*transform-origin: bottom;*/
@@ -79,12 +118,25 @@
     <main class="clock">
       <div class="clock-face">
         <div class="hands">
-          <div class="hand hand-sec"></div>
-          <div class="hand hand-min"></div>
+          <div class="hand hand-sec z2"></div>
+          <div class="hand hand-min z1"></div>
           <div class="hand hand-hour"></div>
+          <div class="hands-cap-wrapper">
+            <div class="hands-cap"></div>
+          </div>
         </div>
       </div>
     </main>
+
+  <script>
+    const timestamp = new Date();
+    console.log('current time: ' + timestamp + '\n' + '\
+    current hour: ' + timestamp.getHours() + '\n' + '\
+    current min: ' + timestamp.getMinutes() + '\n' + '\
+    current sec: ' + timestamp.getSeconds());
+
+    // console.log(new Date().getSeconds());
+  </script>
 
   </body>
 
