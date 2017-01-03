@@ -1,0 +1,19 @@
+{
+  "name": "day2",
+  "version": "0.1.0",
+  "description": "css and js analog clock",
+  "main": "index.html",
+  "scripts": {
+    "css": "postcss -u autoprefixer --autoprefixer.browsers '> 5%' -o clock.css clock.css"
+  },
+  "keywords": [],
+  "author": "@bzelip",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "autoprefixer": "^6.5.1",
+    "cssnano": "^3.7.7",
+    "postcss": "^5.2.4",
+    "postcss-cli": "^2.6.0",
+    "postcss-import": "^8.1.2"
+  }
+}
