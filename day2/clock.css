@@ -30,33 +30,15 @@ body,
   display: flex;
   -webkit-box-pack: center;
           justify-content: center;
-  /*align-items: flex-start;*/
-  /*border: 5px solid red;*/
+  -webkit-box-align: center;
+          align-items: center;
 }
-
-/*.hands::after {
-  content: "";
-  width: 50px;
-  height: 50px;
-  background-color: black;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 50%;
-}*/
 
 .hand {
   position: absolute;
   bottom: 50%;
+  left: 50%;/*necessary for safari (10.0.1 at time of writing); doesn't f with other browsers*/
 }
-
-/*.hand-cover {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  background-color: black;
-  margin-top: 3rem;
-  bottom: 50%;
-}*/
 
 .hands-cap-wrapper {
   display: -webkit-box;
@@ -81,10 +63,6 @@ body,
   width: 5px;
   height: 175px;
   background-color: red;
-
-          -webkit-transform: rotate(calc(360deg/2));
-
-                  transform: rotate(calc(360deg/2));
   -webkit-transform-origin: bottom;
           transform-origin: bottom;/*this is the only option that keeps all hands connected at same origin point*/
   /*transform-origin: 0 100%;*/
@@ -95,15 +73,13 @@ body,
   width: 7px;
   height: 175px;
   background-color: black;
-  -webkit-transform: rotate(22.5deg);
-          transform: rotate(22.5deg);
   -webkit-transform-origin: bottom;
           transform-origin: bottom;/*this is the only option that keeps all hands connected at same origin point*/
   /*transform-origin: 0 100%;*/
   /*transform-origin: 0 bottom;*/
 }
 
-.hand-hour {
+.hand-hr {
   width: 7px;
   height: 125px;
   background-color: green;
