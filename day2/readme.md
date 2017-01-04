@@ -25,3 +25,7 @@ Theory for clock hands animation:
      - for every second that goes by, rotate the seconds hand by calc(60/360)
      - for every minute that goes by, rotate the minutes hand by calc(60/360)
      - for every hour that goes by, rotate the hour hand by calc(12/360)
+
+
+set style attribute for rotation on clock hands:
+  - http://stackoverflow.com/a/20289883/2145103

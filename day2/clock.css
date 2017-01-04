@@ -63,6 +63,7 @@ body,
   width: 5px;
   height: 175px;
   background-color: red;
+  z-index: 2;
   -webkit-transform-origin: bottom;
           transform-origin: bottom;/*this is the only option that keeps all hands connected at same origin point*/
   /*transform-origin: 0 100%;*/
@@ -73,6 +74,7 @@ body,
   width: 7px;
   height: 175px;
   background-color: black;
+  z-index: 1;
   -webkit-transform-origin: bottom;
           transform-origin: bottom;/*this is the only option that keeps all hands connected at same origin point*/
   /*transform-origin: 0 100%;*/
