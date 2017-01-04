@@ -38,6 +38,8 @@ body,
   position: absolute;
   bottom: 50%;
   left: 50%;/*necessary for safari (10.0.1 at time of writing); doesn't f with other browsers*/
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .hands-cap-wrapper {
@@ -60,7 +62,7 @@ body,
 }
 
 .hand-sec {
-  width: 5px;
+  width: 7px;
   height: 175px;
   background-color: red;
   z-index: 2;
