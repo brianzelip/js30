@@ -25,7 +25,9 @@ console.log(m);
 console.log(h);
 
 
-// the real deal
+// show time at page load
 s.style.transform = 'rotate(' + rotS + 'deg)';
 m.style.transform = 'rotate(' + rotM + 'deg)';
 h.style.transform = 'rotate(' + rotH + 'deg)';
+
+// animate hand
