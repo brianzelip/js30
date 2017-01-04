@@ -11,9 +11,7 @@
   "license": "GPL-3.0",
   "devDependencies": {
     "autoprefixer": "^6.5.1",
-    "cssnano": "^3.7.7",
     "postcss": "^5.2.4",
-    "postcss-cli": "^2.6.0",
-    "postcss-import": "^8.1.2"
+    "postcss-cli": "^2.6.0"
   }
 }
