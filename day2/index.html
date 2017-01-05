@@ -17,12 +17,12 @@
 
     <main class="clock">
       <div class="clock-face">
-        <div class="hands-wrapper">
         <div class="hand second"></div>
         <div class="hand minute"></div>
         <div class="hand hour"></div>
-      </div>
-        <div class="cap hide"></div>
+        <div class="cap-wrapper">
+          <div class="cap"></div>
+        </div>
       </div>
     </main>
 
@@ -34,14 +34,11 @@
     const h = document.querySelector('.hour');
 
     function setTime() {
-      const ts = new Date();
-      const seconds = ts.getSeconds();
-      const minutes = ts.getMinutes();
-      const hours = ts.getHours();
+      const now = new Date();
 
-      const rotS = ((seconds/60)*360) + 90;
-      const rotM = ((minutes/60)*360) + 90;
-      const rotH = ((hours/12)*360) + 90;
+      const rotS = ((now.getSeconds()/60)*360) + 90;
+      const rotM = ((now.getMinutes()/60)*360) + 90;
+      const rotH = ((now.getHours()/12)*360) + 90;
 
       s.style.transform = `rotate(${rotS}deg)`;
       m.style.transform = `rotate(${rotM}deg)`;
