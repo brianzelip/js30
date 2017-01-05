@@ -1,7 +1,9 @@
 body {
   min-height: 100vh;
+  display: -webkit-box;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .clock {
@@ -17,18 +19,29 @@ body {
   height: 100%;
   position: relative;
   border: 1px solid black;
+  display: -webkit-box;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.hands-wrapper {
+
+
 }
 
 .hand {
-  align-self: center;
+  right: 50%;
   position: absolute;
-  transform-origin: 100%;
-  transform: rotate(90deg);
+  -webkit-transform-origin: 100%;
+          transform-origin: 100%;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
   width: 50%;
   height: 10px;
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
   /*transition-timing-function: cubic-bezier(0.1, 2.7, .58, 1);*/
 }
@@ -48,10 +61,11 @@ body {
 }
 
 .cap-wrapper {
-  position: relative;
+
 }
 
 .cap {
+  z-index: 4;
   width: 30px;
   height: 30px;
   background: black;
