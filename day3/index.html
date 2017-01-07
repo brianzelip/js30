@@ -19,7 +19,7 @@
 
       }
       .preview {
-        /*background: #eee;*/
+        background: var(--accentColor);
         border: var(--borderSize) solid red;
         height: 100%;
       }
@@ -48,11 +48,17 @@
         box-shadow: 1px 1px 0 green;
       }
 
+      input[type=color] {
+        border: none;
+        width: 100%;
+      }
+
       h1 { font-size: var(--h1FontSize); }
 
       :root {
         --borderSize: 2rem;
         --h1FontSize: 2rem;
+        --accentColor: #eeeeee;
       }
 
 
@@ -65,20 +71,26 @@
       <section class="controls col-5 p3 border-box">
         <div>
           <form>
-            <label class=""><code>border-size</code> control</label>
+            <label class=""><code>div { border-size <output name="borderSizeValue">2</output>rem; }</code></label>
             <input type="range" name="borderSizeRange" min="0" max="5" value="2" class="col-12" oninput="this.form.borderSizeValue.value=this.value">
-            <output name="borderSizeValue">2</output><span>rem</span>
             <!-- <input type="number" name="borderValue" value="25" oninput="this.form.border.value=this.value"> -->
+
             <hr>
-            <label class=""><code>h1</code> <code>font-size</code> control</label>
+
+            <label class=""><code>h1 { font-size <output name="h1FontSizeValue">4</output>rem; }</code></label>
             <input type="range" name="h1FontSizeRange" min="1" max="15" value="4" class="col-12" oninput="this.form.h1FontSizeValue.value=this.value">
-            <output name="h1FontSizeValue">4</output><span>rem</span>
+
+            <hr>
+
+            <label class=""><code>:root { --accentColor: <output name="accentColorValue">#eeeeee</output>; }</code></label>
+            <input type="color" name="accentColorPicker" value="#eeeeee" class="block p0"   oninput="this.form.accentColorValue.value=this.value">
+
           </form>
         </div>
       </section>
       <section class="col-7 px3">
         <div class="preview p4 border-box">
-          <h1 class="m0">hello</h1>
+          <h1 class="m0 overflow-auto">heading 1</h1>
         </div>
       </section>
     </div>
@@ -87,6 +99,7 @@
       const inputs = document.querySelectorAll('.controls input');
       const borderSizeRange = document.querySelector('input[name=borderSizeRange]');
       const h1FontSizeRange = document.querySelector('input[name=h1FontSizeRange]');
+      const accentColorPicker = document.querySelector('input[type=color]');
 
       borderSizeRange.addEventListener('input', function(e) {
         console.log('The borderSizeRange input value is ' + borderSizeRange.value);
@@ -98,11 +111,22 @@
         updateH1FontSize(h1FontSizeRange.value);
       }, false);
 
+      accentColorPicker.addEventListener('input', function(e) {
+        console.log('The accentColorPicker input value is ' + accentColorPicker.value);
+        updateAccentColor(accentColorPicker.value);
+      }, false);
+
       function updateBorderSize(input) {
         document.documentElement.style.setProperty('--borderSize', input + 'rem');
       }
+
       function updateH1FontSize(input) {
         document.documentElement.style.setProperty('--h1FontSize', input + 'rem');
+      }
+
+      function updateAccentColor(input) {
+        document.documentElement.style.setProperty('--accentColor', input);
+        console.log('accentColor input is: ' + input)
       }
     </script>
 
