@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="https://npmcdn.com/basscss@7.1.1/css/basscss.min.css">
+    <title>Update CSS Variables in JS</title>
+    <meta name="description" content="">
+    <meta name="author" content="Brian Zelip">
+    <meta name="keywords" content="">
+    <style>
+      body,
+      .vh100 { min-height: 100vh; }
+      .align-items-center { align-items: center; }
+      .controls {
+
+
+      }
+      .preview {
+        /*background: #eee;*/
+        border: var(--borderSize) solid red;
+        height: 100%;
+      }
+
+      input[type=range] {
+        margin: 0;
+        padding: 1rem 0;
+      }
+
+      input[type=range]::-webkit-slider-thumb {
+        background: green;
+      }
+
+      input[type=range]::-moz-range-track {
+        background: red;
+        height: .25rem;
+        box-shadow: 1px 1px 0 green;
+      }
+
+      input[type=range]::-moz-range-thumb {
+        background-color: red;
+        border: none;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        box-shadow: 1px 1px 0 green;
+      }
+
+      h1 { font-size: var(--h1FontSize); }
+
+      :root {
+        --borderSize: 2rem;
+        --h1FontSize: 2rem;
+      }
+
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="vh100 flex flex-center align-items-center">
+      <section class="controls col-5 p3 border-box">
+        <div>
+          <form>
+            <label class=""><code>border-size</code> control</label>
+            <input type="range" name="borderSizeRange" min="0" max="5" value="2" class="col-12" oninput="this.form.borderSizeValue.value=this.value">
+            <output name="borderSizeValue">2</output><span>rem</span>
+            <!-- <input type="number" name="borderValue" value="25" oninput="this.form.border.value=this.value"> -->
+            <hr>
+            <label class=""><code>h1</code> <code>font-size</code> control</label>
+            <input type="range" name="h1FontSizeRange" min="1" max="15" value="4" class="col-12" oninput="this.form.h1FontSizeValue.value=this.value">
+            <output name="h1FontSizeValue">4</output><span>rem</span>
+          </form>
+        </div>
+      </section>
+      <section class="col-7 px3">
+        <div class="preview p4 border-box">
+          <h1 class="m0">hello</h1>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      const inputs = document.querySelectorAll('.controls input');
+      const borderSizeRange = document.querySelector('input[name=borderSizeRange]');
+      const h1FontSizeRange = document.querySelector('input[name=h1FontSizeRange]');
+
+      borderSizeRange.addEventListener('input', function(e) {
+        console.log('The borderSizeRange input value is ' + borderSizeRange.value);
+        updateBorderSize(borderSizeRange.value);
+      }, false);
+
+      h1FontSizeRange.addEventListener('input', function(e) {
+        console.log('The h1FontSizeRange input value is ' + h1FontSizeRange.value);
+        updateH1FontSize(h1FontSizeRange.value);
+      }, false);
+
+      function updateBorderSize(input) {
+        document.documentElement.style.setProperty('--borderSize', input + 'rem');
+      }
+      function updateH1FontSize(input) {
+        document.documentElement.style.setProperty('--h1FontSize', input + 'rem');
+      }
+    </script>
+
+  </body>
+
+</html>
