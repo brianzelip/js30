@@ -14,6 +14,12 @@
       body,
       .vh100 { min-height: 100vh; }
       .align-items-center { align-items: center; }
+      .justify-content-center { justify-content: center; }
+      .justify-content-start { justify-content: flex-start; }
+      .align-content-center { align-content: center; }
+      .align-self-start { align-self: flex-start; }
+      .align-self-center { align-self: center; }
+
       .controls {
 
 
@@ -55,6 +61,8 @@
 
       h1 { font-size: var(--h1FontSize); }
 
+      .accentColor { color: var(--accentColor); }
+
       :root {
         --borderSize: 2rem;
         --h1FontSize: 2rem;
@@ -67,32 +75,35 @@
 
   <body>
 
-    <div class="vh100 flex flex-center align-items-center">
-      <section class="controls col-5 p3 border-box">
-        <div>
-          <form>
-            <label class=""><code>div { border-size <output name="borderSizeValue">2</output>rem; }</code></label>
-            <input type="range" name="borderSizeRange" min="0" max="5" value="2" class="col-12" oninput="this.form.borderSizeValue.value=this.value">
-            <!-- <input type="number" name="borderValue" value="25" oninput="this.form.border.value=this.value"> -->
+    <div class="vh100 flex flex-column align-items-center justify-content-center">
+      <div class="h1 accentColor">Update CSS Variables with JS</div>
+      <div class="flex flex-center col-12">
+        <section class="controls col-5 p3 border-box">
+          <div>
+            <form>
+              <label class=""><code>div { border-size <output name="borderSizeValue">2</output>rem; }</code></label>
+              <input type="range" name="borderSizeRange" min="0" max="5" value="2" class="col-12" oninput="this.form.borderSizeValue.value=this.value">
+              <!-- <input type="number" name="borderValue" value="25" oninput="this.form.border.value=this.value"> -->
 
-            <hr>
+              <hr>
 
-            <label class=""><code>h1 { font-size <output name="h1FontSizeValue">4</output>rem; }</code></label>
-            <input type="range" name="h1FontSizeRange" min="1" max="15" value="4" class="col-12" oninput="this.form.h1FontSizeValue.value=this.value">
+              <label class=""><code>h1 { font-size <output name="h1FontSizeValue">4</output>rem; }</code></label>
+              <input type="range" name="h1FontSizeRange" min="1" max="15" value="4" class="col-12" oninput="this.form.h1FontSizeValue.value=this.value">
 
-            <hr>
+              <hr>
 
-            <label class=""><code>:root { --accentColor: <output name="accentColorValue">#eeeeee</output>; }</code></label>
-            <input type="color" name="accentColorPicker" value="#eeeeee" class="block p0"   oninput="this.form.accentColorValue.value=this.value">
+              <label class=""><code>:root { --accentColor: <output name="accentColorValue">#eeeeee</output>; }</code></label>
+              <input type="color" name="accentColorPicker" value="#eeeeee" class="block p0"   oninput="this.form.accentColorValue.value=this.value">
 
-          </form>
-        </div>
-      </section>
-      <section class="col-7 px3">
-        <div class="preview p4 border-box">
-          <h1 class="m0 overflow-auto">heading 1</h1>
-        </div>
-      </section>
+            </form>
+          </div>
+        </section>
+        <section class="col-7 px3">
+          <div class="preview p4 border-box">
+            <h1 class="m0 overflow-auto">heading 1</h1>
+          </div>
+        </section>
+      </div>
     </div>
 
     <script>
