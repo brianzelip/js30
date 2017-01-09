@@ -45,7 +45,11 @@ body {
   z-index: 2;
 }
 
-.hour { background: green; }
+.hour {
+  width: 35%;
+  right: 50%;
+  background: green;
+}
 
 .cap-wrapper {
   position: relative;
