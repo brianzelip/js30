@@ -13,6 +13,7 @@
     <style>
       body,
       .vh100 { min-height: 100vh; }
+      .h0 { font-size: 4rem; }
       .align-items-center { align-items: center; }
       .justify-content-center { justify-content: center; }
       .justify-content-start { justify-content: flex-start; }
@@ -20,10 +21,6 @@
       .align-self-start { align-self: flex-start; }
       .align-self-center { align-self: center; }
 
-      .controls {
-
-
-      }
       .preview {
         background: var(--accentColor);
         border: var(--borderSize) solid red;
@@ -59,13 +56,15 @@
         width: 100%;
       }
 
-      h1 { font-size: var(--h1FontSize); }
-
+      .fontSize { font-size: var(--fontSize); }
+      .fontFamily { font-family: var(--fontFamily); }
+      .borderSize { border-width: var(--borderSize); }
       .accentColor { color: var(--accentColor); }
 
       :root {
+        --fontSize: 2rem;
+        --fontFamily: "Helvetica Neue",Helvetica,sans-serif;
         --borderSize: 2rem;
-        --h1FontSize: 2rem;
         --accentColor: #eeeeee;
       }
     </style>
@@ -74,69 +73,92 @@
   <body>
 
     <div class="vh100 flex flex-column align-items-center justify-content-center">
-      <div class="h1 accentColor">Update CSS Variables with JS</div>
+      <h1 class="h0 fontFamily accentColor overflow-auto">Update CSS Variables with JS</h1>
       <div class="flex flex-center col-12">
-        <section class="controls col-5 p3 border-box">
+        <section class="col-5 p3 border-box">
           <div>
-            <form>
-              <label class=""><code>div { border-size <output name="borderSizeValue">2</output>rem; }</code></label>
-              <input type="range" name="borderSizeRange" min="0" max="5" value="2" class="col-12" oninput="this.form.borderSizeValue.value=this.value">
+            <form class="controls">
+              <label class=""><code>:root { --fontSize: <output name="fontSizeValue">2</output>rem; }</code></label>
+              <input type="range" name="fontSizeRange" min="1" max="15" value="2" class="col-12" oninput="this.form.fontSizeValue.value=this.value" data-unit="rem" data-var-name="fontSize">
+
+              <hr>
+
+              <label class=""><code>:root { <br> <span style="padding-left: 1rem;">--fontFamily: <output name="fontFamilyValue">"Helvetica Neue", Helvetica, sans-serif</output>;</span><br>  }</code></label>
+
+              <select name="fontFamilySelect" class="col-12 h5" oninput="this.form.fontFamilyValue.value=this.value" data-var-name="fontFamily">
+                <option value="&quot;Helvetica Neue&quot;, Helvetica, sans-serif">Sans-Serif</option>
+                <option value="Georgia, Times, serif" selected>Serif</option>
+                <option value="&quot;PT Mono&quot;, &quot;Source Code Pro&quot;, Consolas, Monaco, monospace">Monospace</option>
+              </select>
+
+              <hr>
+
+              <label class=""><code>:root { --borderSize: <output name="borderSizeValue">2</output>rem; }</code></label>
+              <input type="range" name="borderSizeRange" min="0" max="5" value="2" class="col-12" oninput="this.form.borderSizeValue.value=this.value" data-unit="rem" data-var-name="borderSize">
               <!-- <input type="number" name="borderValue" value="25" oninput="this.form.border.value=this.value"> -->
 
               <hr>
 
-              <label class=""><code>h1 { font-size <output name="h1FontSizeValue">4</output>rem; }</code></label>
-              <input type="range" name="h1FontSizeRange" min="1" max="15" value="4" class="col-12" oninput="this.form.h1FontSizeValue.value=this.value">
-
-              <hr>
-
               <label class=""><code>:root { --accentColor: <output name="accentColorValue">#eeeeee</output>; }</code></label>
-              <input type="color" name="accentColorPicker" value="#eeeeee" class="block p0"   oninput="this.form.accentColorValue.value=this.value">
+              <input type="color" name="accentColorPicker" value="#eeeeee" class="block p0"   oninput="this.form.accentColorValue.value=this.value" data-var-name="accentColor">
 
             </form>
           </div>
         </section>
         <section class="col-7 px3">
-          <div class="preview p4 border-box">
-            <h1 class="m0 overflow-auto">heading 1</h1>
+          <div class="preview p4 border-box borderSize">
+            <p class="m0 overflow-auto fontSize"><code>fontSize</code></p>
           </div>
         </section>
       </div>
     </div>
 
     <script>
-      const inputs = document.querySelectorAll('.controls input');
-      const borderSizeRange = document.querySelector('input[name=borderSizeRange]');
-      const h1FontSizeRange = document.querySelector('input[name=h1FontSizeRange]');
-      const accentColorPicker = document.querySelector('input[type=color]');
+      const inputs = document.querySelectorAll('.controls input, .controls select');//just like CSS, you can have multiple selectors!!
 
-      borderSizeRange.addEventListener('input', function(e) {
-        console.log('The borderSizeRange input value is ' + borderSizeRange.value);
-        updateBorderSize(borderSizeRange.value);
-      }, false);
-
-      h1FontSizeRange.addEventListener('input', function(e) {
-        console.log('The h1FontSizeRange input value is ' + h1FontSizeRange.value);
-        updateH1FontSize(h1FontSizeRange.value);
-      }, false);
-
-      accentColorPicker.addEventListener('input', function(e) {
-        console.log('The accentColorPicker input value is ' + accentColorPicker.value);
-        updateAccentColor(accentColorPicker.value);
-      }, false);
-
-      function updateBorderSize(input) {
-        document.documentElement.style.setProperty('--borderSize', input + 'rem');
+      function showUpdate() {
+        const variable = '--' + this.dataset.varName;
+        const value = this.value + (this.dataset.unit || '');
+        document.documentElement.style.setProperty(variable, value);
       }
 
-      function updateH1FontSize(input) {
-        document.documentElement.style.setProperty('--h1FontSize', input + 'rem');
-      }
+      inputs.forEach(input => input.addEventListener('change', showUpdate));
+      inputs.forEach(input => input.addEventListener('mousemove', showUpdate));
 
-      function updateAccentColor(input) {
-        document.documentElement.style.setProperty('--accentColor', input);
-        console.log('accentColor input is: ' + input)
-      }
+      // Commenting out my initial solution below which could be refactored with less code.
+      // Using a peak at the tuorial's solution as the refactor basis.
+      //
+      // const borderSizeRange = document.querySelector('input[name=borderSizeRange]');
+      // const fontSizeRange = document.querySelector('input[name=fontSizeRange]');
+      // const accentColorPicker = document.querySelector('input[type=color]');
+      //
+      // borderSizeRange.addEventListener('input', function(e) {
+      //   console.log('The borderSizeRange input value is ' + borderSizeRange.value);
+      //   updateBorderSize(borderSizeRange.value);
+      // }, false);
+      //
+      // fontSizeRange.addEventListener('input', function(e) {
+      //   console.log('The fontSizeRange input value is ' + fontSizeRange.value);
+      //   updateH1FontSize(fontSizeRange.value);
+      // }, false);
+      //
+      // accentColorPicker.addEventListener('input', function(e) {
+      //   console.log('The accentColorPicker input value is ' + accentColorPicker.value);
+      //   updateAccentColor(accentColorPicker.value);
+      // }, false);
+      //
+      // function updateBorderSize(input) {
+      //   document.documentElement.style.setProperty('--borderSize', input + 'rem');
+      // }
+      //
+      // function updateH1FontSize(input) {
+      //   document.documentElement.style.setProperty('--fontSize', input + 'rem');
+      // }
+      //
+      // function updateAccentColor(input) {
+      //   document.documentElement.style.setProperty('--accentColor', input);
+      //   console.log('accentColor input is: ' + input)
+      // }
     </script>
 
   </body>
