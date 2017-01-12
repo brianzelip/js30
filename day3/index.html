@@ -61,6 +61,8 @@
       .borderSize { border-width: var(--borderSize); }
       .accentColor { color: var(--accentColor); }
 
+      .border-left { border-left: 2px solid var(--accentColor); }
+
       :root {
         --fontSize: 2rem;
         --fontFamily: "Helvetica Neue",Helvetica,sans-serif;
@@ -73,7 +75,6 @@
   <body>
 
     <div class="vh100 flex flex-column align-items-center justify-content-center">
-      <h1 class="h0 fontFamily accentColor overflow-auto">Update CSS Variables with JS</h1>
       <div class="flex flex-center col-12">
         <section class="col-5 p3 border-box">
           <div>
@@ -105,7 +106,9 @@
             </form>
           </div>
         </section>
-        <section class="col-7 px3">
+
+        <section class="col-7 px3 vh100 flex flex-column border-left">
+          <h1 class="h0 fontFamily accentColor overflow-auto">Update CSS Variables with JS</h1>
           <div class="preview p4 border-box borderSize">
             <p class="m0 overflow-auto fontSize"><code>fontSize</code></p>
           </div>
