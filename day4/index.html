@@ -62,15 +62,37 @@
         // console.table(from1800s);
 
         // 1.4. And finally the most efficient and ES6 way to do it:
-        const from1800s = inventors.filter(inventor => inventor.year >= 1800 && inventor.year <= 1899);
-        console.table(from1800s);
+        // const from1800s = inventors.filter(inventor => inventor.year >= 1800 && inventor.year <= 1899);
+        // console.table(from1800s);
 
       // Array.prototype.map()
       // 2. Give us an array of the inventors' first and last names
 
         // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 
-        
+        //Array.prototype.map() is like a for loop that goes thru every element in an array, does something to that element (the same thing/function to every element), then returns the result as an array; it's possible that the returned array.length() is equal to the original array.length(), but i'm not sure.
+
+        const names = [];
+
+        function fullNames(person) {
+          // console.log(person + ': length = ' + person.length + ', comma char = ' + person.indexOf(','));
+          // console.log(person + ': length = ' + person.length + ', comma char = ' + person.indexOf(','));
+          // console.log(typeof(person));
+          // console.log(person + ': first name = ' + person.slice(person.indexOf(',')+2) + '; last name = ' + person.slice(0, person.indexOf(',')));
+
+          console.log('names array is: ' + names);
+          names.push(person.slice(person.indexOf(',')+2) + ' ' + person.slice(0, person.indexOf(',')));
+          console.log('names array is now: ' + names);
+        }
+
+        people.map(fullNames);
+
+        // 2.R. REFERENCES
+        // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+        // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+        // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
+        // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice
+        // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push
 
       // Array.prototype.sort()
       // 3. Sort the inventors by birthdate, oldest to youngest
