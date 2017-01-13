@@ -72,20 +72,22 @@
 
         //Array.prototype.map() is like a for loop that goes thru every element in an array, does something to that element (the same thing/function to every element), then returns the result as an array; it's possible that the returned array.length() is equal to the original array.length(), but i'm not sure.
 
-        const names = [];
 
-        function fullNames(person) {
-          // console.log(person + ': length = ' + person.length + ', comma char = ' + person.indexOf(','));
-          // console.log(person + ': length = ' + person.length + ', comma char = ' + person.indexOf(','));
-          // console.log(typeof(person));
-          // console.log(person + ': first name = ' + person.slice(person.indexOf(',')+2) + '; last name = ' + person.slice(0, person.indexOf(',')));
-
-          console.log('names array is: ' + names);
-          names.push(person.slice(person.indexOf(',')+2) + ' ' + person.slice(0, person.indexOf(',')));
-          console.log('names array is now: ' + names);
-        }
-
-        people.map(fullNames);
+        // Here is the solution I came to first without looking at the tutorial:
+        // const names = [];
+        //
+        // function fullNames(person) {
+        //   // console.log(person + ': length = ' + person.length + ', comma char = ' + person.indexOf(','));
+        //   // console.log(person + ': length = ' + person.length + ', comma char = ' + person.indexOf(','));
+        //   // console.log(typeof(person));
+        //   // console.log(person + ': first name = ' + person.slice(person.indexOf(',')+2) + '; last name = ' + person.slice(0, person.indexOf(',')));
+        //
+        //   console.log('names array is: ' + names);
+        //   names.push(person.slice(person.indexOf(',')+2) + ' ' + person.slice(0, person.indexOf(',')));
+        //   console.log('names array is now: ' + names);
+        // }
+        //
+        // people.map(fullNames);
 
         // 2.R. REFERENCES
         // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
@@ -93,6 +95,25 @@
         // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf
         // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice
         // - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push
+
+        // Here is the tutorial's solution:
+        // EDIT -- DOH!!! I used the `people` data NOT the `inventors`!!
+
+        // tutorial solution's 1st iteration:
+        // const fullNames = inventors.map(function(inventor){
+        //   return inventor.first + ' ' + inventor.last;
+        // });
+        // console.log(fullNames);
+
+        // tutorial solution's second iteration:
+        // const fullNames = inventors.map(function(inventor){
+        //   return `${inventor.first} ${inventor.last}`;
+        // });
+        // console.log(fullNames);
+
+        // tutorial solution's third and most efficient ES6 iteration:
+        const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+        console.log(fullNames);
 
       // Array.prototype.sort()
       // 3. Sort the inventors by birthdate, oldest to youngest
