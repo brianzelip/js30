@@ -37,7 +37,7 @@
         { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
       ];
 
-      const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
+      const people = ['Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Berle, Milton', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Blake, William', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano','Beck, Glenn', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony'];
 
       // Array.prototype.filter()
       // 1. Filter the list of inventors for those who were born in the 1800's
@@ -146,6 +146,10 @@
         // array.prototype.reduce() behaves similarly...
 
         // The tutorial's solution (notice the unnecessary ternary operators (`?` and `:`)):
+        // HOWEVER, the ternary op is unnecessary only when using `a-b`,
+        // when using `a > b`, the ternary op is necessary. It might have something to do with
+        // the values in this case being number types.
+
         // const ordered = inventors.sort((a,b) => a.year > b.year ? 1 : -1);
         // console.table(ordered);
 
@@ -217,21 +221,140 @@
       // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
-      function reqListener () {
-        console.log(this.responseText);
-      }
+        // The idea of this challenge is not to GET the html at the above URL, but rather
+        // to go to the wikipedia page and complete the challenge by working in the console
+        // at the page.
 
-      var oReq = new XMLHttpRequest();
-      oReq.addEventListener("load", reqListener);
-      oReq.open("GET", "https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris");
-      oReq.send();
+        // Here is the WP api call to get the JSON of the Boulevards_in_Paris category:
+        // https://en.wikipedia.org/w/api.php?action=query&format=json&list=categorymembers&meta=&continue=-%7C%7C&cmtitle=Category%3ABoulevards+in+Paris&cmlimit=75
+
+        // my first iteration using source data as NodeList instead of as array
+        // const category = document.querySelector('.mw-category');
+        // const blvds = category.querySelectorAll('a');// notice you can throw `querySelectorAll` on a variable, not just the document or body, etc!
+        //
+        // const de = [];
+        //
+        // blvds.forEach(function(a) {
+        //   // console.log(a.innerHTML);
+        //   if (a.innerHTML.includes('de') || a.innerHTML.includes('De')) {
+        //     de.push(a.innerHTML);
+        //   };
+        // });
+        // console.log(de);
+
+        // The tutorial solution's first iteration:
+        // const category = document.querySelector('.mw-category');
+        // const links = Array.from(category.querySelectorAll('a'));
+        //
+        // const de = links.map(function(link) {
+        //   return link.innerHTML;
+        // }).filter(function(text) {
+        //   return (text.includes('de') || text.includes('De'))
+        // })
+        //
+        // console.log(de);
+
+        // The tutorial solution's second iteration:
+        // const category = document.querySelector('.mw-category');
+        // const links = [...category.querySelectorAll('a')];//create array of all iterable items in the NodeList using ES6 spread operator instead of using `Array.from(NodeList)`
+        // const de = links.map(link => link.innerHTML).filter(link => (link.includes('de') || link.includes('De')));
+        // console.log(de);
+
+        // The tutorial solution's final iteration that improves readability:
+        // const links = [...document.querySelectorAll('.mw-category a')];
+        // const de = links
+        //             .map(link => link.textContent)//notice textContent vs. innerHTML
+        //             .filter(text => (text.includes('de') || text.includes('De')))
+        // console.log(de);
+
+        // 6.R. REFERENCES
+        // - WP page, https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+        // - WP api for getting a category, https://www.mediawiki.org/wiki/API:Categories
+        // - WP api sandbox example for getting category members (different than getting categories like above), https://www.mediawiki.org/wiki/API:Categorymembers
+        // - NodeList.forEach(), https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach
+        // - string.prototype.includes(), https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
+        // - innerHTML vs textContent, http://stackoverflow.com/a/24428100/2145103
+
+        // Here was the beginning of my trying to GET the wikipedia JSON:
+
+        // function reqListener () {
+        //   console.log(this.responseText);
+        // }
+        //
+        // var oReq = new XMLHttpRequest();
+        // oReq.addEventListener("load", reqListener);
+        // oReq.open("GET", "https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris");
+        // oReq.send();
+
 
       // 7. sort Exercise
       // Sort the people alphabetically by last name
 
+        // My first iteration:
+        // const sorted = people.sort((a,b) => b < a);
+        // console.log(sorted);
+        // using subtraction sign (`-`) doesn't work, perhaps because b and a are strings not numbers?
+
+        // my second iteration:
+        // const sorted = people.sort(function(a,b) {
+        //   // console.log('a is ' + a + ' and b is ' + b);
+        //   // const [aLast,aFirst] = a.split(', ');
+        //   // const [bLast,bFirst] = b.split(', ');
+        //   // console.log(bFirst + ' ' + bLast);
+        //   if (b < a) {
+        //     return 1
+        //   } else {
+        //     return -1
+        //   };
+        //   // console.log(lastOne);
+        // })
+        // console.log(sorted);
+        // NOTE the data source for this excercise lends itself well to just sorting on the string values
+        // since the last name comes first in each string. Because of this my initial solution above
+        // satisfies the challenge. However, if each element of people started with first name, then
+        // the solution would have to invole using string.split() in the tutorial's solution above
+        // (which are commented out).
+        // Even the tutorial returned only the same strings elements from the original people array, not
+        // an array of arrays.
+
       // 8. Reduce Exercise
       // Sum up the instances of each of these
       const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+        // My first iteration
+        // const summary = data.reduce(function(tally, category) {
+        //   // console.log(tally, category):
+        //   if (!tally[category]) {
+        //     tally[category] = 1
+        //   } else {
+        //     tally[category] += 1
+        //   }
+        //   // console.log(tally, category);
+        //   return tally;
+        // }, {})
+        //
+        // console.log(summary);
+
+        // my second ES6 iteration:
+        const sumInstances = data.reduce((tally, category) => {
+          !tally[category] ? tally[category] = 1 : tally[category] += 1
+          return tally
+        }, {})
+        console.log(sumInstances);
+
+        // AWESOME! Solved this one without watching the tutorial at all. I figured it out by watching
+        // the FUN FUN FUNCTION vids listed below (larned about this !yt channel from NodeUp podcast #112).
+        // The key to my grasping how to use array.reduce() is:
+          // 1. the first argument is what !mdn calls the accumulator, but is really like what the ultimate
+          // result will be. AND, this can be any kind of object, including a number or an object! It is the
+          // name for what is passed AFTER the function, ie the `initialValue`. If no initialValue then
+          // the accumulator will not have a value until AFTER the first iteration.
+          // 2. To get reduce() working even just for testing purpose, it needs to have a RETURN statement!
+
+        // 8.R REFERENCES
+        // - array.reduce(),  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+        // - FUN FUN FUNCTION vid 1 on array.reduce(), https://www.youtube.com/watch?v=Wl98eZpkp-c
+        // - FUN FUN FUNCTION vid 2 on array.reduce(), https://www.youtube.com/watch?v=1DMolJ2FrNY
 
     </script>
 
