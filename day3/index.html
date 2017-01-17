@@ -65,14 +65,20 @@
       .fontFamily { font-family: var(--fontFamily); }
       .borderSize { border-width: var(--borderSize); }
       .accentColor { color: var(--accentColor); }
+      .rotateX { transform: rotateX(var(--rotateX)); }
+      .scaleY { transform: scaleY(var(--scaleY)); }
 
       .border-left { border-left: 2px solid var(--accentColor); }
+      .origin-right { transform-origin: right; }
 
       :root {
         --fontSize: 2rem;
         --fontFamily: "Helvetica Neue",Helvetica,sans-serif;
         --borderSize: 2rem;
         --accentColor: #eeeeee;
+        --rotateX: 0deg;
+        --scaleY: 0;
+
       }
     </style>
   </head>
@@ -108,6 +114,18 @@
               <label class=""><code>:root { --accentColor: <output name="accentColorValue">#eeeeee</output>; }</code></label>
               <input type="color" name="accentColorPicker" value="#eeeeee" class="block p0"   oninput="this.form.accentColorValue.value=this.value" data-var-name="accentColor">
 
+
+              <hr>
+
+              <label class=""><code>:root { --rotateX: <output name="rotateXValue">0</output>deg; }</code></label>
+              <input type="range" name="rotateXRange" min="0" max="360" value="0" class="col-12" oninput="this.form.rotateXValue.value=this.value" data-unit="deg" data-var-name="rotateX">
+
+              <hr>
+
+              <label class=""><code>:root { --scaleY: <output name="scaleYValue">0</output>; }</code></label>
+              <input type="range" name="scaleYRange" min="0" max="5" value="0" class="col-12" oninput="this.form.scaleYValue.value=this.value" data-var-name="scaleY">
+
+
             </form>
           </div>
         </section>
@@ -117,6 +135,10 @@
           <div class="preview p4 border-box borderSize">
             <p class="m0 overflow-auto fontSize"><code>fontSize</code></p>
             <p class="h0 m0 overflow-auto"><code class="fontFamily">fontFamily</code></p>
+          </div>
+          <div class="flex mt4">
+            <div class="p2 bg-blue flex-auto rotateX origin-right"></div>
+            <div class="p2 bg-red flex-auto scaleY"></div>
           </div>
         </section>
       </div>
