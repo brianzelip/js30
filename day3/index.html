@@ -67,6 +67,7 @@
       .accentColor { color: var(--accentColor); }
       .rotateX { transform: rotateX(var(--rotateX)); }
       .scaleY { transform: scaleY(var(--scaleY)); }
+      .perspective { transform: perspective(var(--perspective));}
 
       .border-left { border-left: 2px solid var(--accentColor); }
       .bg-accentColor { background-color: var(--accentColor); }
@@ -79,6 +80,7 @@
         --accentColor: #eeeeee;
         --rotateX: 0deg;
         --scaleY: 1;
+        --perspective: 100px;
 
       }
     </style>
@@ -126,6 +128,11 @@
               <label class=""><code>:root { --scaleY: <output name="scaleYValue">1</output>; }</code></label>
               <input type="range" name="scaleYRange" min="0" max="5" value="1" class="col-12" oninput="this.form.scaleYValue.value=this.value" data-var-name="scaleY">
 
+              <hr class="bg-accentColor">
+
+              <label class=""><code>:root { --perspective: <output name="perspectiveValue">1</output>px; }</code></label>
+              <input type="range" name="perspectiveRange" min="0" max="100" value="1" class="col-12" oninput="this.form.perspectiveValue.value=this.value" data-unit="px" data-var-name="perspective">
+
 
             </form>
           </div>
@@ -138,7 +145,7 @@
             <p class="h0 m0 overflow-auto"><code class="fontFamily">fontFamily</code></p>
           </div>
           <div class="flex mt4">
-            <div class="p2 bg-blue flex-auto rotateX origin-right"></div>
+            <div class="p2 bg-blue flex-auto rotateX origin-right perspective"></div>
             <div class="p2 bg-red flex-auto scaleY"></div>
           </div>
         </section>
