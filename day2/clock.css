@@ -51,6 +51,27 @@ body {
   background: green;
 }
 
+.cap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  background: black;
+  border-radius: 50%;
+  margin: auto;
+  transform: translateY(3.5px);/*center the cap over the hands as much as possible*/
+  z-index: 10;
+}
+
+/*
+  Previous cap method that used a wrapper for the cap placement.
+  The current method achives the same placement via top, right, bottom, left,
+  whereas the method below places the wrapper at 100% height and width.
+  See http://codepen.io/nDav/pen/zvPJem for inspiration.
+
 .cap-wrapper {
   position: relative;
   width: 100%;
@@ -58,7 +79,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(3.5px);/*center the cap over the hands as much as possible*/
+  transform: translateY(3.5px);(center the cap over the hands as much as possible)
   z-index: 4;
 }
 
@@ -67,4 +88,4 @@ body {
   height: 50px;
   background: black;
   border-radius: 50%;
-}
+}*/
